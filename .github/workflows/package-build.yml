@@ -19,7 +19,7 @@ jobs:
         run: sed -Ei 's/(^Version:[[:space:]]*).*/\1${{github.ref_name}}/' ${{ vars.PKG_NAME }}.spec
 
       - name: Download source binaries
-        run: wget https://github.com/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
+        run: wget https://github.com/curl/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
 
       - name: Upload source archive as artifact
         uses: actions/upload-artifact@v3
