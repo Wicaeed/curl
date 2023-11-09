@@ -15,11 +15,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Download source binaries
-        run: mkdir -p ~/SOURCES && wget -P SOURCES https://github.com/curl/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
-
       - name: Replace version in RPM spec so correct source is downloaded when building RPM
         run: sed -Ei 's/(^Version:[[:space:]]*).*/\1${{github.ref_name}}/' ${{ vars.PKG_NAME }}.spec
+
+      - name: Download source binaries
+        id: sources
+        run: mkdir -p /github/home/rpmbuild/SOURCES && wget -P /github/home/rpmbuild/SOURCES https://github.com/curl/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
 
       - name: Run rpmbuild on RPM spec to produce package
         id: rpm
