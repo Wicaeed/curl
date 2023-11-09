@@ -20,7 +20,8 @@ jobs:
 
       - name: Download source binaries
         id: sources
-        run: mkdir -p /github/home/rpmbuild/SOURCES && wget -P /github/home/rpmbuild/SOURCES https://github.com/curl/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
+        run: mkdir -p ./rpmbuild/SOURCES && wget -P /github/home/rpmbuild/SOURCES https://github.com/curl/curl/releases/download/curl-8_4_0/curl-${{ github.ref_name }}.tar.gz
+
 
       - name: Run rpmbuild on RPM spec to produce package
         id: rpm
