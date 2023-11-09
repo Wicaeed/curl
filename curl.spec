@@ -6,7 +6,7 @@ Summary:	An updated & repackaged CURL binary
 Group:		Networking/Utilities
 License:	MIT License
 URL:		https://curl.haxx.se
-Source0:	%{name}-%{version}.tar.gz
+Source: 	%{name}-%{version}.tar.gz
 
 BuildRequires:	openssl-devel
 Requires:	libcurl
@@ -15,7 +15,6 @@ Requires:	libcurl
 A repackaged/updated curl binary for CentOS 7 hosts that contains the fixes for CVE-2023-38545 & others
 
 %prep
-
 %setup -q
 
 %build
@@ -37,10 +36,11 @@ make %{?_smp_mflags}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-make install DESTDIR=%{buildroot}
+make install %{name} DESTDIR=%{buildroot}
 libtool --finish /usr/lib
-#mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-#cp %{name}.sh $RPM_BUILD_ROOT/%{_bindir}
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(-,root,root,-)
@@ -52,10 +52,6 @@ libtool --finish /usr/lib
 /usr/share/aclocal/libcurl.m4
 /usr/share/man/man1/*.gz
 /usr/share/man/man3/*.gz
-
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 make install DESTDIR=%{buildroot}
 
