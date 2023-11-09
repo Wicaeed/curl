@@ -6,7 +6,7 @@ Summary:	An updated & repackaged CURL binary
 Group:		Networking/Utilities
 License:	MIT License
 URL:		https://curl.haxx.se
-Source: 	%{name}-%{version}.tar.gz
+Source0: 	%{name}-%{version}.tar.gz
 
 BuildRequires:	openssl-devel
 Requires:	libcurl
